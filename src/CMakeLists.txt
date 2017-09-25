@@ -136,6 +136,7 @@ install(TARGETS iegenlib_t
 install(DIRECTORY ./ 
 	DESTINATION include/iegenlib
 	FILES_MATCHING PATTERN "*.h"
+	               PATTERN "*.hpp"
 	PATTERN ".svn" EXCLUDE)
 
 #Install the oracle files for testing dot output
