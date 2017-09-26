@@ -105,14 +105,14 @@ add_library(iegenlib STATIC ${iegenlib_SOURCES})
 
 #Compile and link the iegenlib_calc executable
 add_executable(iegenlib_calc iegenlib_calc.cc)
-target_link_libraries(iegenlib_calc iegenlib cloog-isl isl gmp ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(iegenlib_calc iegenlib isl gmp ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(iegenlib_calc isl gmp)
 
 ### this executable hold our unit tests
 add_executable(iegenlib_t ${iegenlib_SOURCES} ${iegenlib_t_SOURCES})
 #Tell included gtest headers to NOT use tuple support.
 add_definitions(-DGTEST_HAS_TR1_TUPLE=0)
-target_link_libraries(iegenlib_t gtest cloog-isl isl gmp)
+target_link_libraries(iegenlib_t gtest isl gmp)
 
 #Process subdirectories
 add_subdirectory(bindings)

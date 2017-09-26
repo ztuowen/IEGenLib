@@ -21,23 +21,6 @@ find_package(Threads)
 include_directories(${Threads_INCLUDE_DIR})
 
 ## add in dependencies
-include(ExternalProject)
-ExternalProject_Add(libgmp
-    DOWNLOAD_COMMAND ""
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/gmp-5.0.5
-    CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/lib/gmp-5.0.5/configure --prefix=${CMAKE_CURRENT_SOURCE_DIR}/lib/installed --disable-shared --with-pic
-    BUILD_COMMAND ${MAKE})
-
-ExternalProject_Add(libcloog-isl
-    DOWNLOAD_COMMAND ""
-    DEPENDS libgmp
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/cloog
-    CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/lib/cloog/configure --prefix=${CMAKE_CURRENT_SOURCE_DIR}/lib/installed --with-gmp-prefix=${CMAKE_CURRENT_SOURCE_DIR}/lib/installed --disable-shared --with-pic
-    BUILD_COMMAND ${MAKE})
-
-## -I and -L on external projects
-include_directories(${IEGENLIB_SOURCE_DIR}/lib/installed/include)
-link_directories( "${IEGENLIB_SOURCE_DIR}/lib/installed/lib" )
 include_directories(${IEGENLIB_SOURCE_DIR}/lib/gtest/include)
 
 ## gtest is added through lib (our source through src) 
