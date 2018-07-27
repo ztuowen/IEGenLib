@@ -16,9 +16,13 @@ macro_ensure_out_of_source_build(
 
 enable_testing()
 
+include(GTest)
+
 ## add the includes and libaries that we depend on
 find_package(Threads)
-include_directories(${Threads_INCLUDE_DIR})
+
+include_directories(${Threads_INCLUDE_DIR} ${GTEST_INCLUDE_DIR})
+link_directories(${GTEST_LIB_DIR})
 
 ## gtest is added through lib (our source through src) 
 add_subdirectory(src)

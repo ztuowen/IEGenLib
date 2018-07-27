@@ -125,7 +125,7 @@ target_link_libraries(superAffSet iegenlib isl gmp)
 add_executable(iegenlib_t ${iegenlib_SOURCES} ${iegenlib_t_SOURCES})
 #Tell included gtest headers to NOT use tuple support.
 add_definitions(-DGTEST_HAS_TR1_TUPLE=0)
-target_link_libraries(iegenlib_t gtest isl gmp)
+target_link_libraries(iegenlib_t gtest isl gmp pthread)
 
 #Process subdirectories
 add_subdirectory(bindings)
