@@ -20,28 +20,7 @@ enable_testing()
 find_package(Threads)
 include_directories(${Threads_INCLUDE_DIR})
 
-## add in dependencies
-include(ExternalProject)
-ExternalProject_Add(libgmp
-    DOWNLOAD_COMMAND ""
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/gmp
-    CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/lib/gmp/configure --prefix=${CMAKE_CURRENT_SOURCE_DIR}/lib/installed --disable-shared --with-pic
-    BUILD_COMMAND ${MAKE})
-
-ExternalProject_Add(lib-isl
-    DOWNLOAD_COMMAND ""
-    DEPENDS libgmp
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/isl
-    CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/lib/isl/configure --prefix=${CMAKE_CURRENT_SOURCE_DIR}/lib/installed --with-int=imath-32 --disable-shared --with-pic
-    BUILD_COMMAND ${MAKE})
-
-## -I and -L on external projects
-include_directories(${IEGENLIB_SOURCE_DIR}/lib/installed/include)
-link_directories( "${IEGENLIB_SOURCE_DIR}/lib/installed/lib" )
-include_directories(${IEGENLIB_SOURCE_DIR}/lib/gtest/include)
-
 ## gtest is added through lib (our source through src) 
-add_subdirectory(lib)
 add_subdirectory(src)
 
 ## set up the testing

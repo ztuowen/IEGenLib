@@ -112,15 +112,13 @@ add_executable(iegenlib_calc iegenlib_calc.cc)
 target_link_libraries(iegenlib_calc iegenlib isl gmp ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(iegenlib_calc isl gmp)
 
-cmake_policy(SET CMP0037 OLD)
 #Compile and link the simplifyDriver executable
-add_executable(../bin/simplifyDriver drivers/simplification.cc)
-target_link_libraries(../bin/simplifyDriver iegenlib isl gmp)
+add_executable(simplifyDriver drivers/simplification.cc)
+target_link_libraries(simplifyDriver iegenlib isl gmp)
 
-cmake_policy(SET CMP0037 OLD)
 #Compile and link the superAffSet executable
-add_executable(../bin/superAffSet drivers/superAffSet.cc)
-target_link_libraries(../bin/superAffSet iegenlib isl gmp)
+add_executable(superAffSet drivers/superAffSet.cc)
+target_link_libraries(superAffSet iegenlib isl gmp)
 
 
 ### this executable hold our unit tests
@@ -145,6 +143,14 @@ install(TARGETS iegenlib_calc
 
 #Install the test binary
 install(TARGETS iegenlib_t
+	RUNTIME DESTINATION bin)
+
+#Install the test binary
+install(TARGETS simplifyDriver
+	RUNTIME DESTINATION bin)
+
+#Install the test binary
+install(TARGETS superAffSet
 	RUNTIME DESTINATION bin)
 
 #Install the header files
